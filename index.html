@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>W COM NET | Internet fibra de verdade</title>
+<meta name="description" content="Internet de alta velocidade com monitoramento exclusivo de cada torre. Contrate a W COM NET.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   1) CORES E MEDIDAS  → para trocar a cor do site, mude AQUI
+   ===================================================== */
+:root{
+  --verde:#0f8a45;        /* verde principal */
+  --verde-escuro:#073d22; /* verde dos fundos escuros */
+  --laranja:#ff7a1a;      /* laranja dos botões (CTA) */
+  --fundo:#ffffff;        /* fundo da página */
+  --fundo-2:#f1f8f3;      /* fundo alternativo das seções */
+  --texto:#10261a;        /* cor do texto */
+  --texto-suave:#4b6355;  /* texto secundário */
+  --borda:#d5e6db;        /* linhas e bordas */
+  --raio:18px;
+}
+/* O site é sempre de fundo branco (não muda com o tema do aparelho) */
+:root{color-scheme:light}
+
+/* =====================================================
+   2) BASE
+   ===================================================== */
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+img,svg{max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+.container{width:min(1120px,92%);margin-inline:auto}
+section{padding:84px 0}
+h1,h2,h3{line-height:1.12;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.3rem,6vw,4.1rem);font-weight:800}
+h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800}
+p{margin:0 0 1em}
+.suave{color:var(--texto-suave)}
+.titulo-secao{max-width:640px;margin-bottom:40px}
+
+/* Botões (CTAs) */
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:14px 26px;border-radius:999px;font-weight:800;border:2px solid transparent;cursor:pointer;font:inherit;font-weight:800;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-laranja{background:var(--laranja);color:#fff;box-shadow:0 8px 22px rgba(255,122,26,.35)}
+.btn-contorno{border-color:var(--verde);color:var(--verde)}
+.btn-verde{background:var(--verde);color:#fff}
+
+/* =====================================================
+   3) MENU DO TOPO (fixo)
+   ===================================================== */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--fundo);border-bottom:1px solid var(--borda)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--fundo);z-index:60}
+.topo .container{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.03em}
+.logo b{color:var(--laranja)}
+.menu{display:flex;gap:26px;align-items:center;font-weight:600}
+.menu a:not(.btn){position:relative}
+.menu a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--laranja);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.menu a:not(.btn):hover::after{transform:scaleX(1)}
+.menu a:not(.btn):hover{color:var(--verde)}
+.menu .destaque{color:var(--verde);display:flex;align-items:center;gap:7px}
+.menu-btn{display:none;background:none;border:0;font-size:1.7rem;color:var(--texto);cursor:pointer}
+@media(max-width:860px){
+  .menu-btn{display:block}
+  /* Menu do celular: desce suavemente ao abrir */
+  .menu{position:absolute;top:68px;left:0;right:0;background:var(--fundo);flex-direction:column;padding:20px;gap:18px;border-bottom:1px solid var(--borda);display:flex;opacity:0;visibility:hidden;transform:translateY(-14px);transition:opacity .3s,transform .3s,visibility .3s}
+  .menu.aberto{opacity:1;visibility:visible;transform:none}
+}
+
+/* Bolinha que pisca = "ao vivo" */
+.ao-vivo{width:10px;height:10px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulsa 1.6s infinite}
+@keyframes pulsa{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}100%{box-shadow:0 0 0 10px rgba(34,197,94,0)}}
+
+/* =====================================================
+   4) HERO (primeira tela)
+   ===================================================== */
+.hero{background:var(--fundo);color:var(--texto);padding:90px 0;position:relative;overflow:hidden}
+.hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero p.lead{font-size:1.15rem;max-width:520px;opacity:.9}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0}
+.selos{display:flex;flex-wrap:wrap;gap:18px;font-size:.92rem;opacity:.9}
+.cartao-vel{background:#fff;color:#10261a;border:1px solid var(--borda);border-radius:var(--raio);padding:28px;box-shadow:0 30px 60px rgba(15,138,69,.18)}
+.cartao-vel small{color:#4b6355}
+.numero-vel{font-size:4.4rem;font-weight:800;line-height:1;color:var(--verde)}
+.barra{height:12px;border-radius:99px;background:#e3efe7;overflow:hidden;margin:14px 0}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--verde),var(--laranja));transition:width 2.2s ease}
+@media(max-width:860px){.hero .container{grid-template-columns:1fr}}
+
+/* =====================================================
+   5) PLANOS
+   ===================================================== */
+.chaves{display:inline-flex;background:var(--fundo-2);border:1px solid var(--borda);border-radius:999px;padding:5px;margin-bottom:30px}
+.chaves button{border:0;background:none;padding:10px 22px;border-radius:999px;font:inherit;font-weight:600;color:var(--texto);cursor:pointer}
+.chaves button.ativo{background:var(--verde);color:#fff}
+.planos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.plano{border:1px solid var(--borda);border-radius:var(--raio);padding:28px;background:var(--fundo);position:relative;display:flex;flex-direction:column}
+.plano.popular{border:2px solid var(--laranja)}
+.plano .etiqueta{position:absolute;top:-13px;left:24px;background:var(--laranja);color:#fff;font-size:.8rem;font-weight:800;padding:3px 12px;border-radius:99px}
+.plano .mega{font-size:2.6rem;font-weight:800;color:var(--verde);line-height:1}
+.plano .preco{font-size:1.9rem;font-weight:800;margin:14px 0 4px}
+.plano ul{padding:0;margin:14px 0 22px;list-style:none;flex:1}
+.plano li{padding:5px 0 5px 26px;position:relative}
+.plano li::before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:800}
+
+/* =====================================================
+   6) MONITORAMENTO DAS TORRES (destaque do site)
+   ===================================================== */
+.torres{background:var(--fundo);color:var(--texto)}
+/* O painel é um grande cartão verde escuro sobre o fundo branco */
+.painel{display:grid;grid-template-columns:1fr 2fr;gap:24px;background:var(--verde-escuro);color:#fff;border-radius:28px;padding:26px;box-shadow:0 30px 60px rgba(7,61,34,.25)}
+.resumo{display:grid;gap:14px;align-content:start}
+.kpi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--raio);padding:18px 22px}
+.kpi strong{display:block;font-size:2rem;color:var(--laranja)}
+.lista-torres{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--raio);padding:8px 20px;overflow-x:auto}
+.torre{display:grid;grid-template-columns:1.4fr .8fr .8fr .8fr;gap:10px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);min-width:440px}
+.torre:last-child{border:0}
+.torre .nome{display:flex;align-items:center;gap:10px;font-weight:600}
+.torre small{color:#b6d3c2;display:block;font-weight:400}
+.tag-ok{color:#4ade80;font-weight:800}
+.tag-alerta{color:var(--laranja);font-weight:800}
+@media(max-width:860px){.painel{grid-template-columns:1fr}}
+
+/* =====================================================
+   7) VANTAGENS, COBERTURA, FAQ
+   ===================================================== */
+.fundo-2{background:var(--fundo-2)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.caixa{background:var(--fundo);border:1px solid var(--borda);border-radius:var(--raio);padding:26px}
+.caixa .icone{font-size:2rem}
+.cep{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 10px}
+.cep input{flex:1;min-width:220px;padding:14px 20px;border-radius:999px;border:2px solid var(--borda);font:inherit;background:var(--fundo);color:var(--texto)}
+#cep-resposta{font-weight:600;min-height:1.6em}
+details{border:1px solid var(--borda);border-radius:14px;padding:16px 20px;margin-bottom:12px;background:var(--fundo)}
+summary{font-weight:800;cursor:pointer}
+
+/* =====================================================
+   8) CONTATO E RODAPÉ
+   ===================================================== */
+.contato{background:var(--laranja);color:#fff;text-align:center}
+.contato .btn-branco{background:#fff;color:#b44d00}
+footer{background:var(--verde-escuro);color:#cfe3d7;padding:46px 0 30px}
+footer .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
+footer a:hover{color:var(--laranja)}
+footer h3{color:#fff;font-size:1.05rem}
+.copy{text-align:center;margin-top:30px;font-size:.88rem;opacity:.7}
+
+/* Botão flutuante do WhatsApp (sempre visível) */
+.zap{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;background:#25d366;color:#fff;border-radius:999px;padding:14px 22px;font-weight:800;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+
+/* =====================================================
+   9) ANIMAÇÕES  (tudo que se move fica aqui)
+   Para desligar uma animação, apague o bloco dela.
+   ===================================================== */
+
+/* 9.1 Barra de progresso da rolagem (linha no topo da tela) */
+.progresso{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--verde),var(--laranja));z-index:80;transition:width .1s linear}
+
+/* 9.2 Menu ganha sombra quando a página rola */
+.topo{transition:box-shadow .3s}
+.topo.rolou{box-shadow:0 10px 30px rgba(7,61,34,.12)}
+
+/* 9.3 Itens que aparecem suavemente ao rolar (classe colocada pelo JS) */
+.reveal.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0ms)}
+.reveal.visto{opacity:1;transform:none}
+
+/* 9.4 Entrada do topo da página (hero) ao abrir o site */
+@keyframes sobe{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.hero .container>div:first-child>*{animation:sobe .9s cubic-bezier(.2,.8,.2,1) backwards}
+.hero .container>div:first-child>:nth-child(2){animation-delay:.15s}
+.hero .container>div:first-child>:nth-child(3){animation-delay:.3s}
+.hero .container>div:first-child>:nth-child(4){animation-delay:.45s}
+.visual{position:relative;animation:sobe 1s .3s backwards}
+.hero .container{position:relative;z-index:1}
+
+/* 9.5 Bolhas coloridas que flutuam no fundo do hero */
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;animation:flutua 12s ease-in-out infinite alternate}
+.b1{width:420px;height:420px;background:#bff0d3;top:-120px;right:-80px}
+.b2{width:320px;height:320px;background:#ffd9b8;bottom:-120px;left:-60px;animation-delay:-5s}
+@keyframes flutua{to{transform:translate(40px,30px) scale(1.15)}}
+
+/* 9.6 Etiquetas que balançam em volta do cartão de velocidade */
+.chip{position:absolute;background:#fff;border:1px solid var(--borda);border-radius:999px;padding:8px 16px;font-weight:800;font-size:.9rem;box-shadow:0 12px 28px rgba(7,61,34,.15);z-index:2;animation:bob 4s ease-in-out infinite}
+.c1{top:-18px;right:-8px}
+.c2{bottom:-18px;left:-10px;color:var(--laranja);animation-delay:-2s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+
+/* 9.7 Botões: brilho passando no laranja, afundam ao clicar */
+.btn-laranja{position:relative;overflow:hidden}
+.btn-laranja::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:brilha 3.5s infinite}
+@keyframes brilha{0%,60%{left:-60%}100%{left:130%}}
+.btn:active{transform:scale(.96)}
+.btn-contorno:hover{background:var(--verde);color:#fff}
+
+/* 9.8 Cartões de vantagens e planos: sobem ao passar o mouse/dedo */
+.caixa,.plano{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.caixa:hover,.plano:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(15,138,69,.16);border-color:var(--verde)}
+.plano.popular:hover{border-color:var(--laranja)}
+.caixa .icone{display:inline-block;transition:transform .4s}
+.caixa:hover .icone{transform:rotate(-12deg) scale(1.25)}
+/* Planos "pulam" para dentro quando trocamos casa/empresa */
+@keyframes pop{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:none}}
+.pop{animation:pop .6s var(--d,0ms) cubic-bezier(.2,.9,.3,1.3) backwards}
+
+/* 9.9 Painel das torres: barra de carga e brilho a cada atualização */
+.mini{height:6px;background:rgba(255,255,255,.15);border-radius:9px;overflow:hidden;margin-top:6px}
+.mini i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4ade80,var(--laranja));transition:width 1s ease}
+.torre{transition:background .3s}
+.torre:hover{background:rgba(255,255,255,.06)}
+.torre.piscou{animation:brilho 1.4s}
+@keyframes brilho{from{background:rgba(74,222,128,.2)}to{background:transparent}}
+
+/* 9.10 Dúvidas: o + vira x ao abrir e o texto desce suave */
+summary{list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--laranja);font-size:1.5rem;line-height:1;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details[open] p{animation:sobe .4s}
+
+/* 9.11 Botão do WhatsApp pulsa para chamar atenção */
+.zap{transition:transform .2s;animation:zapPulsa 2.6s infinite}
+.zap:hover{transform:scale(1.06)}
+@keyframes zapPulsa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%,100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+
+/* 9.12 Ajustes para tablet e celular */
+@media(max-width:1024px){section{padding:70px 0}.hero{padding:70px 0}}
+@media(max-width:600px){section{padding:56px 0}.hero{padding:48px 0}.numero-vel{font-size:3.4rem}.chip{font-size:.8rem}.c1{right:0}.c2{left:0}.painel{padding:16px}.zap{padding:12px 18px}.btn{padding:12px 20px}}
+
+/* Pessoas que pedem menos movimento no aparelho: desliga as animações */
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<!-- Barra de progresso da rolagem (preenchida pelo JavaScript) -->
+<div class="progresso" id="progresso"></div>
+
+<!-- =================== MENU DO TOPO =================== -->
+<header class="topo">
+  <div class="container">
+    <a href="#inicio" class="logo">W COM <b>NET</b></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+    <nav class="menu" id="menu">
+      <a href="#planos">Planos</a>
+      <!-- Menu de destaque: monitoramento de torres -->
+      <a href="#torres" class="destaque"><span class="ao-vivo"></span> Monitoramento de Torres</a>
+      <a href="#vantagens">Vantagens</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="#contato" class="btn btn-laranja" data-zap="Olá! Quero contratar a W COM NET.">Assine agora</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- =================== HERO =================== -->
+<section class="hero" id="inicio">
+  <!-- Bolhas decorativas animadas -->
+  <span class="blob b1"></span><span class="blob b2"></span>
+  <div class="container">
+    <div>
+      <h1>Internet que não cai. Suporte que não some.</h1>
+      <p class="lead">Fibra de alta velocidade com monitoramento exclusivo de cada torre, 24 horas por dia. Instalação rápida e sem burocracia.</p>
+      <div class="acoes">
+        <a href="#planos" class="btn btn-laranja">Ver planos</a>
+        <a href="#" class="btn btn-contorno" data-zap="Olá! Quero falar com um consultor da W COM NET.">Falar com consultor</a>
+      </div>
+      <div class="selos"><span>✓ Instalação grátis*</span><span>✓ Wi-Fi 6 incluso</span><span>✓ Sem fidelidade abusiva</span></div>
+    </div>
+    <!-- Cartão animado de velocidade + etiquetas flutuantes -->
+    <div class="visual">
+    <span class="chip c1">📡 Torres online</span><span class="chip c2">⚡ Ping 8 ms</span>
+    <div class="cartao-vel">
+      <small>Velocidade de download</small>
+      <div class="numero-vel"><span id="velNum">0</span><small> Mega</small></div>
+      <div class="barra"><i id="velBarra"></i></div>
+      <small>Simulação ilustrativa. Velocidade real conforme o plano contratado.</small>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PLANOS =================== -->
+<section id="planos">
+  <div class="container">
+    <div class="titulo-secao">
+      <h2>Escolha o plano ideal para você</h2>
+      <p class="suave">Sem pegadinha. Preço claro e velocidade de verdade.</p>
+    </div>
+    <!-- Alternador Residencial / Empresarial -->
+    <div class="chaves" role="tablist">
+      <button class="ativo" data-tipo="casa">Para casa</button>
+      <button data-tipo="empresa">Para empresa</button>
+    </div>
+    <!-- Os cards são criados pelo JavaScript (veja a lista PLANOS lá embaixo) -->
+    <div class="planos" id="listaPlanos"></div>
+  </div>
+</section>
+
+<!-- =================== MONITORAMENTO DAS TORRES =================== -->
+<section class="torres" id="torres">
+  <div class="container">
+    <div class="titulo-secao">
+      <h2>Cada torre vigiada 24 horas</h2>
+      <p class="suave">Nossa equipe acompanha sinal, latência e carga de cada torre em tempo real. Se algo foge do normal, já estamos agindo antes de você perceber.</p>
+    </div>
+    <div class="painel">
+      <div class="resumo">
+        <div class="kpi"><strong id="kpiOnline">0</strong>torres online agora</div>
+        <div class="kpi"><strong id="kpiLat">0 ms</strong>latência média</div>
+        <div class="kpi"><strong>24h</strong>equipe técnica de plantão</div>
+      </div>
+      <!-- Lista criada pelo JavaScript (veja a lista TORRES lá embaixo) -->
+      <div class="lista-torres" id="listaTorres"></div>
+    </div>
+    <p class="suave" style="margin-top:16px;font-size:.9rem">Painel ilustrativo. Troque os nomes das torres e os dados no arquivo, na lista TORRES.</p>
+  </div>
+</section>
+
+<!-- =================== VANTAGENS =================== -->
+<section class="fundo-2" id="vantagens">
+  <div class="container">
+    <div class="titulo-secao"><h2>Por que ser W COM NET</h2></div>
+    <div class="grade">
+      <div class="caixa"><div class="icone">⚡</div><h3>Fibra até sua casa</h3><p class="suave">Velocidade estável para trabalhar, estudar e jogar sem travar.</p></div>
+      <div class="caixa"><div class="icone">📡</div><h3>Torres monitoradas</h3><p class="suave">Monitoramento exclusivo de cada torre, com resposta rápida a qualquer oscilação.</p></div>
+      <div class="caixa"><div class="icone">🛠️</div><h3>Instalação rápida</h3><p class="suave">Técnico no local em poucos dias, com tudo configurado.</p></div>
+      <div class="caixa"><div class="icone">💬</div><h3>Suporte humano</h3><p class="suave">Atendimento por WhatsApp e telefone, com gente de verdade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== COBERTURA =================== -->
+<section id="cobertura">
+  <div class="container" style="max-width:760px">
+    <h2>A W COM NET chega na sua casa?</h2>
+    <p class="suave">Digite seu CEP e fale com a gente para confirmar a disponibilidade.</p>
+    <div class="cep">
+      <input type="text" id="cepInput" inputmode="numeric" maxlength="9" placeholder="Seu CEP (00000-000)" aria-label="CEP">
+      <button class="btn btn-laranja" id="cepBtn">Consultar</button>
+    </div>
+    <div id="cep-resposta"></div>
+  </div>
+</section>
+
+<!-- =================== DÚVIDAS (FAQ) =================== -->
+<section class="fundo-2" id="faq">
+  <div class="container" style="max-width:800px">
+    <h2>Dúvidas frequentes</h2>
+    <details><summary>Quanto tempo leva a instalação?</summary><p class="suave">Em geral, poucos dias úteis após a contratação. Confirme o prazo com nosso time.</p></details>
+    <details><summary>Preciso de um roteador?</summary><p class="suave">Nossos planos incluem roteador Wi-Fi para você começar a usar na hora.</p></details>
+    <details><summary>E se a internet falhar?</summary><p class="suave">Como cada torre é monitorada, muitas vezes detectamos antes de você. Se precisar, chame no WhatsApp.</p></details>
+    <details><summary>Como pago minha fatura?</summary><p class="suave">Por boleto, Pix ou cartão. Fale com a gente para escolher a melhor forma.</p></details>
+  </div>
+</section>
+
+<!-- =================== CTA FINAL =================== -->
+<section class="contato" id="contato">
+  <div class="container">
+    <h2>Pronto para ter a melhor internet da sua região?</h2>
+    <p>Chame agora e receba sua oferta em minutos.</p>
+    <a href="#" class="btn btn-branco" data-zap="Olá! Quero contratar a W COM NET.">Contratar pelo WhatsApp</a>
+  </div>
+</section>
+
+</main>
+
+<!-- =================== RODAPÉ =================== -->
+<footer>
+  <div class="container">
+    <div><h3>W COM NET</h3><p>Provedor de internet com tecnologia, agilidade e respeito ao cliente.</p></div>
+    <div>
+      <h3>Contato</h3>
+      <p>📞 <a href="#" id="linkTel"></a><br>
+         💬 <a href="#" data-zap="Olá! Preciso de ajuda.">WhatsApp</a><br>
+         📸 <a href="#" id="linkInsta" target="_blank" rel="noopener"></a><br>
+         ✉️ <a href="#" id="linkEmail"></a></p>
+    </div>
+    <div><h3>Endereço</h3><p id="textoEndereco"></p></div>
+  </div>
+  <div class="copy">© <span id="ano"></span> W COM NET. Todos os direitos reservados.</div>
+</footer>
+
+<!-- Botão fixo do WhatsApp -->
+<a href="#" class="zap" data-zap="Olá! Vim pelo site e quero saber mais.">💬 WhatsApp</a>
+
+<script>
+/* =====================================================
+   A) CONFIGURAÇÕES  → AQUI você troca telefone, Instagram etc.
+   ===================================================== */
+const CONFIG = {
+  telefone:  "(00) 0000-0000",   // telefone para exibir
+  whatsapp:  "5500000000000",    // só números, com 55 + DDD
+  instagram: "wcomnet",          // usuário sem o @
+  email:     "contato@wcomnet.com.br",
+  endereco:  "Rua Exemplo, 123, Centro, Sua Cidade - UF"
+};
+
+/* =====================================================
+   B) PLANOS  → para mudar velocidade/preço, edite aqui
+   ===================================================== */
+const PLANOS = {
+  casa: [
+    { mega: 300, preco: "79,90",  itens: ["Wi-Fi 6 incluso", "Instalação grátis*", "Suporte 7 dias"] },
+    { mega: 500, preco: "99,90",  itens: ["Wi-Fi 6 incluso", "Instalação grátis*", "Ideal para streaming"], popular: true },
+    { mega: 700, preco: "129,90", itens: ["Wi-Fi 6 incluso", "Prioridade no suporte", "Ideal para games"] },
+    { mega: 1000, preco: "169,90", itens: ["Roteador premium", "Prioridade total", "Casa toda conectada"] }
+  ],
+  empresa: [
+    { mega: 500, preco: "199,90", itens: ["IP fixo opcional", "Suporte prioritário", "Nota fiscal"] },
+    { mega: 1000, preco: "349,90", itens: ["IP fixo incluso", "Suporte 24h", "SLA de atendimento"], popular: true },
+    { mega: 2000, preco: "599,90", itens: ["Link dedicado", "Gerente de conta", "SLA premium"] }
+  ]
+};
+
+/* =====================================================
+   C) TORRES  → nome, bairro, latência (ms) e carga (%)
+   Para adicionar uma torre, copie uma linha e mude os dados.
+   ===================================================== */
+const TORRES = [
+  { nome: "Torre Centro",     area: "Centro",       lat: 8,  carga: 42 },
+  { nome: "Torre Norte",      area: "Zona Norte",   lat: 11, carga: 55 },
+  { nome: "Torre Sul",        area: "Zona Sul",     lat: 9,  carga: 38 },
+  { nome: "Torre Industrial", area: "Distrito Ind.", lat: 12, carga: 61 },
+  { nome: "Torre Rural",      area: "Zona Rural",   lat: 14, carga: 33 }
+];
+
+/* ---------- Função auxiliar: link do WhatsApp com mensagem pronta ---------- */
+function linkZap(msg){
+  return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+}
+
+/* =====================================================
+   D) PREENCHE CONTATOS (telefone, insta, etc.)
+   ===================================================== */
+document.getElementById("linkTel").textContent = CONFIG.telefone;
+document.getElementById("linkTel").href = "tel:" + CONFIG.telefone.replace(/\D/g, "");
+document.getElementById("linkInsta").textContent = "@" + CONFIG.instagram;
+document.getElementById("linkInsta").href = "https://instagram.com/" + CONFIG.instagram;
+document.getElementById("linkEmail").textContent = CONFIG.email;
+document.getElementById("linkEmail").href = "mailto:" + CONFIG.email;
+document.getElementById("textoEndereco").textContent = CONFIG.endereco;
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* Todo elemento com data-zap vira botão de WhatsApp automaticamente */
+document.querySelectorAll("[data-zap]").forEach(el => {
+  el.href = linkZap(el.dataset.zap);
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
+/* =====================================================
+   E) MENU DO CELULAR (abre e fecha)
+   ===================================================== */
+const menu = document.getElementById("menu");
+document.getElementById("menuBtn").addEventListener("click", () => menu.classList.toggle("aberto"));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.classList.remove("aberto")));
+
+/* =====================================================
+   F) HERO: contador de velocidade animado
+   ===================================================== */
+(function animaVelocidade(){
+  const alvo = 1000, duracao = 2200, inicio = performance.now();
+  const num = document.getElementById("velNum");
+  document.getElementById("velBarra").style.width = "92%";
+  function passo(agora){
+    const p = Math.min((agora - inicio) / duracao, 1);
+    num.textContent = Math.round(alvo * p);
+    if (p < 1) requestAnimationFrame(passo);
+  }
+  requestAnimationFrame(passo);
+})();
+
+/* =====================================================
+   G) PLANOS: desenha os cards e troca casa/empresa
+   ===================================================== */
+function mostraPlanos(tipo){
+  const area = document.getElementById("listaPlanos");
+  area.innerHTML = "";
+  PLANOS[tipo].forEach((p, i) => {
+    const card = document.createElement("div");
+    card.className = "plano pop" + (p.popular ? " popular" : "");
+    card.style.setProperty("--d", i * 90 + "ms");   // cada card entra um pouco depois do outro
+    card.innerHTML =
+      (p.popular ? '<span class="etiqueta">Mais vendido</span>' : "") +
+      '<div class="mega">' + p.mega + ' <small style="font-size:1rem">Mega</small></div>' +
+      '<div class="preco">R$ ' + p.preco + '<small class="suave" style="font-size:.9rem"> /mês</small></div>' +
+      "<ul>" + p.itens.map(i => "<li>" + i + "</li>").join("") + "</ul>" +
+      '<a class="btn btn-' + (p.popular ? "laranja" : "verde") + '" target="_blank" rel="noopener" href="' +
+      linkZap("Olá! Quero contratar o plano de " + p.mega + " Mega da W COM NET.") + '">Quero este plano</a>';
+    area.appendChild(card);
+  });
+}
+document.querySelectorAll(".chaves button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".chaves button").forEach(b => b.classList.remove("ativo"));
+    btn.classList.add("ativo");
+    mostraPlanos(btn.dataset.tipo);
+  });
+});
+mostraPlanos("casa");
+
+/* =====================================================
+   H) MONITORAMENTO DE TORRES (dados simulados que variam)
+   Quando tiver dados reais, troque esta função por uma
+   chamada à API do seu sistema de monitoramento.
+   ===================================================== */
+function desenhaTorres(){
+  const area = document.getElementById("listaTorres");
+  let somaLat = 0;
+
+  // 1ª vez: cria as linhas das torres (só uma vez)
+  if (!area.children.length){
+    TORRES.forEach(t => {
+      area.insertAdjacentHTML("beforeend",
+        '<div class="torre">' +
+          '<div class="nome"><span class="ao-vivo"></span><div>' + t.nome + "<small>" + t.area + "</small></div></div>" +
+          '<div class="t-lat"></div>' +
+          '<div><span class="t-carga"></span><div class="mini"><i></i></div></div>' +
+          '<div class="t-status"></div>' +
+        "</div>");
+    });
+  }
+
+  // Toda vez: só atualiza os números, para a barra deslizar suave
+  TORRES.forEach((t, i) => {
+    const linha = area.children[i];
+    // Pequena variação aleatória para parecer ao vivo
+    const lat = Math.max(4, t.lat + Math.round((Math.random() - .5) * 4));
+    const carga = Math.min(95, Math.max(15, t.carga + Math.round((Math.random() - .5) * 8)));
+    const alerta = carga > 80;               // acima de 80% de carga = alerta
+    somaLat += lat;
+    linha.querySelector(".t-lat").textContent = lat + " ms";
+    linha.querySelector(".t-carga").textContent = carga + "% carga";
+    linha.querySelector(".mini i").style.width = carga + "%";
+    const st = linha.querySelector(".t-status");
+    st.textContent = alerta ? "Atenção" : "Operando";
+    st.className = "t-status " + (alerta ? "tag-alerta" : "tag-ok");
+    // Brilho rápido na linha a cada atualização
+    linha.classList.remove("piscou"); void linha.offsetWidth; linha.classList.add("piscou");
+  });
+  document.getElementById("kpiOnline").textContent = TORRES.length + "/" + TORRES.length;
+  document.getElementById("kpiLat").textContent = Math.round(somaLat / TORRES.length) + " ms";
+}
+desenhaTorres();
+setInterval(desenhaTorres, 4000);   // atualiza a cada 4 segundos
+
+/* =====================================================
+   I) CONSULTA DE CEP (leva o cliente ao WhatsApp)
+   ===================================================== */
+const cepInput = document.getElementById("cepInput");
+cepInput.addEventListener("input", () => {            // máscara 00000-000
+  let v = cepInput.value.replace(/\D/g, "").slice(0, 8);
+  cepInput.value = v.length > 5 ? v.slice(0, 5) + "-" + v.slice(5) : v;
+});
+document.getElementById("cepBtn").addEventListener("click", () => {
+  const resp = document.getElementById("cep-resposta");
+  if (cepInput.value.length < 9){ resp.textContent = "Digite um CEP completo com 8 números."; return; }
+  const url = linkZap("Olá! Quero saber se a W COM NET atende o CEP " + cepInput.value + ".");
+  resp.innerHTML = 'Ótimo! <a href="' + url + '" target="_blank" rel="noopener" style="color:var(--verde);text-decoration:underline">Confirme a cobertura no WhatsApp</a>.';
+});
+/* =====================================================
+   J) ANIMAÇÕES DE ROLAGEM
+   ===================================================== */
+const progresso = document.getElementById("progresso");
+const topo = document.querySelector(".topo");
+
+// Barra de progresso no topo + sombra do menu ao rolar
+function aoRolar(){
+  const alt = document.documentElement.scrollHeight - innerHeight;
+  progresso.style.width = (alt > 0 ? scrollY / alt * 100 : 0) + "%";
+  topo.classList.toggle("rolou", scrollY > 10);
+}
+addEventListener("scroll", aoRolar, { passive: true });
+aoRolar();
+
+// Lista de elementos que aparecem suavemente ao rolar.
+// Para animar outro item, acrescente o seletor CSS dele aqui.
+const ALVOS = ".titulo-secao, .chaves, .caixa, .lista-torres, .kpi, details, #cobertura .container > *, #faq h2, .contato .container > *";
+
+const observador = new IntersectionObserver(entradas => {
+  entradas.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("visto");          // dispara a animação
+    observador.unobserve(e.target);
+    // Depois de aparecer, tira as classes para não atrapalhar o efeito de hover
+    setTimeout(() => e.target.classList.remove("reveal", "visto"), 1600);
+  });
+}, { threshold: .15 });
+
+document.querySelectorAll(ALVOS).forEach(el => {
+  // Itens irmãos entram um depois do outro (efeito cascata)
+  el.style.setProperty("--d", [...el.parentElement.children].indexOf(el) * 100 + "ms");
+  el.classList.add("reveal");
+  observador.observe(el);
+});
+</script>
+</body>
+</html>
